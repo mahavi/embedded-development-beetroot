@@ -81,3 +81,24 @@ Desktop.ini
 .vscode
 .devcontainer
 .clangd
+
+# STM32CubeIDE build outputs
+**/Debug/
+**/Release/
+**/RelWithDebInfo/
+**/MinSizeRel/
+
+*.obj
+*.d
+*.su
+*.cyclo
+*.axf
+*.hex
+*.list
+*.lst
+
+# STM32CubeIDE / Eclipse local workspace data
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+.settings/language.settings.xml

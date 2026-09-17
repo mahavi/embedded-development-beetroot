@@ -6,7 +6,9 @@
 #define CONTACT_PIN 13
 
 namespace Configuration {
+  static constexpr uint8_t kSampleCount = 10;
   static constexpr unsigned long kOpenStableMS = 1000;
+  static constexpr unsigned long kDebounceUs = 20000;
 }
 
 #endif  // CONFIGURATION_H_

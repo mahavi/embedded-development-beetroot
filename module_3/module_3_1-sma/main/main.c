@@ -8,8 +8,8 @@ static adc_oneshot_unit_handle_t adc_handle;
 
 static bool led_on = false;
 static int samples[SMA_SIZE] = {0};
-int next = 0;  // position to write the next reading
-int count = 0; // number of valid readings so far
+static uint8_t next = 0;  // position to write the next reading
+static uint8_t count = 0; // number of valid readings so far
 
 void add_sample(int raw)
 {

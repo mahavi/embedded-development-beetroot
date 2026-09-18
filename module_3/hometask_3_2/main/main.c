@@ -24,10 +24,15 @@ static int adc_read_raw(void)
   return raw_value;
 }
 
-void process_res(void)
+void process_adc(void)
 {
   int raw = adc_read_raw();
   float u_manual_mv = (float)raw * U_FS_VOLTS * 1000.0f / (float)ADC_MAX_CODE;
+
+  if (raw == 0)
+  {
+    return;
+  }
 
   int u_cali_mv = 0;
   ESP_ERROR_CHECK(adc_cali_raw_to_voltage(cali_handle, raw, &u_cali_mv));
@@ -69,7 +74,7 @@ static void loop(void)
 {
   while (1)
   {
-    process_res();
+    process_adc();
     vTaskDelay(pdMS_TO_TICKS(PROCESS_INTERVAL_MS));
   }
 }

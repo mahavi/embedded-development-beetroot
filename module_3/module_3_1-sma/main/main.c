@@ -5,6 +5,7 @@
 
 static const char *TAG = "3.1";
 static adc_oneshot_unit_handle_t adc_handle;
+static adc_channel_t adc_channel;
 
 static bool led_on = false;
 static int samples[SMA_SIZE] = {0};
@@ -29,7 +30,7 @@ static int adc_read_raw(void)
   ESP_ERROR_CHECK(
       adc_oneshot_read(
           adc_handle,
-          LDR_ADC_CHANNEL,
+          adc_channel,
           &raw_value));
 
   return raw_value;
@@ -80,22 +81,19 @@ void process_ldr()
 
 static void setup_adc(void)
 {
+  adc_unit_t unit = 0;
+  ESP_ERROR_CHECK(adc_oneshot_io_to_channel(LDR_GPIO, &unit, &adc_channel));
   adc_oneshot_unit_init_cfg_t unit_config = {
-      .unit_id = LDR_ADC_UNIT,
+      .unit_id = unit,
   };
 
   ESP_ERROR_CHECK(adc_oneshot_new_unit(&unit_config, &adc_handle));
-
   adc_oneshot_chan_cfg_t channel_config = {
-      .bitwidth = ADC_BITWIDTH_DEFAULT,
-      .atten = ADC_ATTEN_DB_12,
+      .bitwidth = ADC_BITWIDTH,
+      .atten = ADC_ATTEN,
   };
 
-  ESP_ERROR_CHECK(
-      adc_oneshot_config_channel(
-          adc_handle,
-          LDR_ADC_CHANNEL,
-          &channel_config));
+  ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, adc_channel, &channel_config));
 }
 
 static void setup_led(void)

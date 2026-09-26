@@ -1,11 +1,15 @@
 idf_component_register(
   SRCS 
       "main.c" 
+      "button/button.c"
       "buzzer/buzzer.c"
+      "encoder/encoder.c"
+      "pin_console/pin_console.c"
   INCLUDE_DIRS
       "."
   PRIV_REQUIRES 
       esp_driver_gpio 
       esp_driver_ledc
+      esp_driver_pcnt
       esp_timer
 )

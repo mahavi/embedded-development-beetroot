@@ -5,6 +5,7 @@ idf_component_register(
       "buzzer/buzzer.c"
       "encoder/encoder.c"
       "pin_console/pin_console.c"
+      "servo/servo.c"
   INCLUDE_DIRS
       "."
   PRIV_REQUIRES 

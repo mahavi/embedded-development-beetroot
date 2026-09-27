@@ -3,13 +3,13 @@
 #include "configuration.h"
 #include "encoder/encoder.h"
 #include "pin_console/pin_console.h"
+#include "servo/servo.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
 
 #include <stdbool.h>
-#include <string.h>
 
 static const char *TAG = "encoder-safe";
 
@@ -35,7 +35,6 @@ static void reset_pin_entry(void)
   s_current_digit = 0;
   s_digit_index = 0;
   s_digit_direction = ENCODER_DIRECTION_NONE;
-  memset(s_entered_pin, 0, sizeof(s_entered_pin));
 
   pin_console_begin();
 }
@@ -81,6 +80,7 @@ static void handle_entered_pin(void)
     ESP_LOGI(TAG, "PIN is correct! SUCCESS!");
     s_safe_state = SAFE_STATE_ACCESS_GRANTED;
     buzzer_play_success();
+    servo_set_angle(SERVO_MAX_ANGLE);
   }
   else
   {
@@ -191,6 +191,9 @@ static void setup(void)
       "reset_button");
 
   encoder_pcnt_init_x4(ENC_GPIO_A, ENC_GPIO_B);
+  
+  servo_init(SERVO_GPIO);
+  servo_set_angle(0);
 
   ESP_LOGI(TAG, "PIN attempts remaining: %d", s_attempts_remaining);
   pin_console_begin();

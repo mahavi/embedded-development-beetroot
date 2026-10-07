@@ -1,0 +1,12 @@
+#ifndef CONFIGURATION_H_
+#define CONFIGURATION_H_
+
+#define CMD_MAX        96U
+#define CMD_TOGGLE_LED "Toggle LED"
+
+#define BUTTON_GPIO_PORT   GPIOB
+#define BUTTON_GPIO_PIN    GPIO_PIN_9
+#define BUTTON_DEBOUNCE_MS 40U
+#define LINK_TX_TIMEOUT_MS 100U
+
+#endif // CONFIGURATION_H_

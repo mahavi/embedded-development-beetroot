@@ -1,0 +1,11 @@
+idf_component_register(
+  SRCS 
+      "main.c"
+      "oled/oled.c"
+      "clock/clock.c"
+  INCLUDE_DIRS
+      "."
+  PRIV_REQUIRES 
+      esp_driver_gpio
+      esp_driver_i2c
+)

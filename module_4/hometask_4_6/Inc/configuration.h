@@ -1,0 +1,11 @@
+#ifndef CONFIGURATION_H_
+#define CONFIGURATION_H_
+
+#define APP_ADC_SAMPLE_COUNT       32U
+#define APP_UART_PERIOD_MS         200U
+#define APP_UART_BUFFER_SIZE       80U
+
+#define APP_ADC_MAX_VALUE          4095U
+#define APP_ADC_REFERENCE_MV       3300U
+
+#endif /* CONFIGURATION_H_ */

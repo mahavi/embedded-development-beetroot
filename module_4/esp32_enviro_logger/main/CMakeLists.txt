@@ -1,0 +1,13 @@
+idf_component_register(
+  SRCS 
+      "main.c"
+      "display/display.c"
+      "sensors/bme280/bme280.c"
+      "sensors/scd41/scd41.c"
+  INCLUDE_DIRS
+      "."
+  PRIV_REQUIRES 
+      esp_driver_gpio
+      esp_driver_i2c
+      esp_driver_spi
+)

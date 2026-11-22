@@ -1,0 +1,15 @@
+idf_component_register(
+  SRCS 
+      "main.c"
+      "bme280/bme280.c"
+      "display/display.c"
+      "wifi_sta/wifi_sta.c"
+  INCLUDE_DIRS
+      "."
+  PRIV_REQUIRES 
+      esp_driver_gpio
+      esp_driver_i2c
+      esp_driver_spi
+      esp_wifi
+      nvs_flash
+)
